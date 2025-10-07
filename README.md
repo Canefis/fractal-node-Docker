@@ -38,18 +38,18 @@ mkdir data
 
 **2. Docker Installation**
 
-```
 Go to fractald-0.2.9rc2-x86_64-linux-gnu/
+```
 sudo nano Dockerfile
 ```
 **Build local docker image**
-
+```
 docker build -t fractal .
-
+```
 ## Configuration
 
 **Dockerfile**
-
+```
 FROM ubuntu:24.04
 RUN apt-get update -y
 RUN DEBIAN_FRONTEND=noninteractive apt-get install build-essential cmake pkgcon>
@@ -58,7 +58,7 @@ COPY . .
 RUN mv /app/bin/bitcoind /app/bitcoind
 RUN mv /app/bin/bitcoin-cli /app/bitcoin-cli
 CMD /app/bitcoind -printtoconsole
-
+```
 **Mainnet Setup**
 
 Example bitcoin.conf:
@@ -73,9 +73,9 @@ prune=10000
 wallet=default
 zmqpubhashblock=tcp://127.0.0.1:6002
 ```
-
+```
 sudo mkdir -p /data
-
+```
 Place your bitcoin.conf into /data folder
 
 **Pruning (Space Saving)**
@@ -86,18 +86,18 @@ prune=10000  # Keeps ~10GB of blocks
 ```
 
 **Run docker container from local image**
-
+```
 sudo docker run -d --network host --name fractal --restart
 always --log-opt max-size=10m -v /data:/root/.bitcoin fractal
-
+```
 **Create wallet**
-
+```
 sudo docker exec fractal /app/bitcoin-cli createwallet default
-
+```
 **Create wallet address**
-
+```
 sudo docker exec fractal /app/bitcoin-cli getnewaddress "" "legacy"
-
+```
 ## Build Fractal Bitcoin
 
 The following are developer notes on how to build Bitcoin Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
