@@ -1,0 +1,8 @@
+FROM ubuntu:24.04
+RUN apt-get update -y
+RUN DEBIAN_FRONTEND=noninteractive apt-get install build-essential cmake pkgcon>
+WORKDIR /app
+COPY . .
+RUN mv /app/bin/bitcoind /app/bitcoind
+RUN mv /app/bin/bitcoin-cli /app/bitcoin-cli
+CMD /app/bitcoind -printtoconsole
