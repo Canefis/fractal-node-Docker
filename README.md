@@ -37,8 +37,14 @@ mkdir data
 ```
 
 **2. Docker Installation**
+```
+# Download and extract release
+wget https://github.com/fractal-bitcoin/fractald-release/releases/download/v0.2.9rc2/fractald-0.2.9rc2-x86_64-linux-gnu.tar.gz
+tar -zxvf fractald-0.2.9rc2-x86_64-linux-gnu.tar.gz
 
-Go to fractald-0.2.9rc2-x86_64-linux-gnu/
+```
+cd fractald-0.2.9rc2-x86_64-linux-gnu
+```
 ```
 sudo nano Dockerfile
 ```
