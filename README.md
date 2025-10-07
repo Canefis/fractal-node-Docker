@@ -21,22 +21,8 @@ With strong tooling and support, building on Fractal is straightforward.
 
 - For more details of Prune Mode, please check: [2025.07 Fractal Prune Mode Explained](./2025-07-13-prune-mode.md)
 
-### Installation Options
 
-**1. Linux Binary Installation**
-
-```
-# Download and extract release
-wget https://github.com/fractal-bitcoin/fractald-release/releases/download/v0.2.9rc2/fractald-0.2.9rc2-x86_64-linux-gnu.tar.gz
-tar -zxvf fractald-0.2.9rc2-x86_64-linux-gnu.tar.gz
-
-# Run the daemon
-cd fractald-0.2.9rc2-x86_64-linux-gnu
-mkdir data
-./bin/bitcoind -datadir=./data/
-```
-
-**2. Docker Installation**
+**1. Docker Installation**
 ```
 # Download and extract release
 wget https://github.com/fractal-bitcoin/fractald-release/releases/download/v0.2.9rc2/fractald-0.2.9rc2-x86_64-linux-gnu.tar.gz
