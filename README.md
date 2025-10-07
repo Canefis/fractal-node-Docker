@@ -42,10 +42,7 @@ Go to fractald-0.2.9rc2-x86_64-linux-gnu/
 ```
 sudo nano Dockerfile
 ```
-**Build local docker image**
-```
-docker build -t fractal .
-```
+
 ## Configuration
 
 **Dockerfile**
@@ -59,6 +56,11 @@ RUN mv /app/bin/bitcoind /app/bitcoind
 RUN mv /app/bin/bitcoin-cli /app/bitcoin-cli
 CMD /app/bitcoind -printtoconsole
 ```
+**Build local docker image**
+```
+docker build -t fractal .
+```
+
 **Mainnet Setup**
 
 Example bitcoin.conf:
