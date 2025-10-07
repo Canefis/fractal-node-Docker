@@ -39,21 +39,44 @@ mkdir data
 **2. Docker Installation**
 
 ```
-git clone https://github.com/fractal-bitcoin/fractald-release.git
-cd fractald-release/fractald-docker
-docker-compose up -d
+Go to fractald-0.2.9rc2-x86_64-linux-gnu/
+sudo nano Dockerfile
 ```
+**Build local docker image**
+
+docker build -t fractal .
 
 ## Configuration
 
-**Testnet Setup**
+**Dockerfile**
 
-Add to bitcoin.conf:
+FROM ubuntu:24.04
+RUN apt-get update -y
+RUN DEBIAN_FRONTEND=noninteractive apt-get install build-essential cmake pkgcon>
+WORKDIR /app
+COPY . .
+RUN mv /app/bin/bitcoind /app/bitcoind
+RUN mv /app/bin/bitcoin-cli /app/bitcoin-cli
+CMD /app/bitcoind -printtoconsole
+
+**Mainnet Setup**
+
+Example bitcoin.conf:
 
 ```
-testnet=1
-[testnet]
+server=1
+port=8332
+rpcport=9002
+rpcuser=user
+rpcpassword=password
+prune=10000
+wallet=default
+zmqpubhashblock=tcp://127.0.0.1:6002
 ```
+
+sudo mkdir -p /data
+
+Place your bitcoin.conf into /data folder
 
 **Pruning (Space Saving)**
 
@@ -61,6 +84,19 @@ testnet=1
 prune=10000  # Keeps ~10GB of blocks
 # Pruning activates after block 10,000 since v0.2.3 (was 100,000 before).
 ```
+
+**Run docker container from local image**
+
+sudo docker run -d --network host --name fractal --restart
+always --log-opt max-size=10m -v /data:/root/.bitcoin fractal
+
+**Create wallet**
+
+sudo docker exec fractal /app/bitcoin-cli createwallet default
+
+**Create wallet address**
+
+sudo docker exec fractal /app/bitcoin-cli getnewaddress "" "legacy"
 
 ## Build Fractal Bitcoin
 
