@@ -41,10 +41,11 @@ mkdir data
 # Download and extract release
 wget https://github.com/fractal-bitcoin/fractald-release/releases/download/v0.2.9rc2/fractald-0.2.9rc2-x86_64-linux-gnu.tar.gz
 tar -zxvf fractald-0.2.9rc2-x86_64-linux-gnu.tar.gz
-
+```
 ```
 cd fractald-0.2.9rc2-x86_64-linux-gnu
 ```
+
 ```
 sudo nano Dockerfile
 ```
